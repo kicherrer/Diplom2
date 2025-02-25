@@ -12,27 +12,30 @@ export interface Database {
       profiles: {
         Row: {
           id: string
-          username: string
+          username: string | null
           avatar_url: string | null
           bio: string | null
+          is_admin: boolean
           created_at: string
-          updated_at: string
+          updated_at: string | null
         }
         Insert: {
           id: string
-          username: string
+          username?: string | null
           avatar_url?: string | null
           bio?: string | null
+          is_admin?: boolean
           created_at?: string
-          updated_at?: string
+          updated_at?: string | null
         }
         Update: {
           id?: string
-          username?: string
+          username?: string | null
           avatar_url?: string | null
           bio?: string | null
+          is_admin?: boolean
           created_at?: string
-          updated_at?: string
+          updated_at?: string | null
         }
       }
       media_items: {
@@ -100,6 +103,32 @@ export interface Database {
           review?: string | null
           created_at?: string
           updated_at?: string
+        }
+      }
+      watchlist: {
+        Row: {
+          id: string
+          user_id: string
+          media_id: string
+          media_type: string
+          status: string
+          added_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          media_id: string
+          media_type: string
+          status?: string
+          added_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          media_id?: string
+          media_type?: string
+          status?: string
+          added_at?: string
         }
       }
     }

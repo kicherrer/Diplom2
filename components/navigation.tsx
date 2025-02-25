@@ -12,6 +12,7 @@ import { LanguageToggle } from "./language-toggle"
 import { AuthButton } from "./auth/auth-button"
 import { useTranslation } from 'react-i18next'
 import { supabase } from "@/lib/supabase"
+import { I18nContent } from './i18n-content';
 
 export default function Navigation() {
   const pathname = usePathname()
@@ -48,7 +49,7 @@ export default function Navigation() {
                 className="gap-2"
               >
                 <HomeIcon className="h-4 w-4" />
-                {t('common.navigation.home')}
+                <I18nContent text="common.navigation.home" />
               </Button>
             </Link>
             <Link href="/discover">
@@ -57,7 +58,7 @@ export default function Navigation() {
                 className="gap-2"
               >
                 <TrendingUpIcon className="h-4 w-4" />
-                {t('common.navigation.discover')}
+                <I18nContent text="common.navigation.discover" />
               </Button>
             </Link>
             <Link href="/profile">
@@ -66,7 +67,7 @@ export default function Navigation() {
                 className="gap-2"
               >
                 <UserIcon className="h-4 w-4" />
-                {t('common.navigation.profile')}
+                <I18nContent text="common.navigation.profile" />
               </Button>
             </Link>
             {isAdmin && (
@@ -76,7 +77,7 @@ export default function Navigation() {
                   className="gap-2"
                 >
                   <Settings className="h-4 w-4" />
-                  {t('common.navigation.admin')}
+                  <I18nContent text="common.navigation.admin" />
                 </Button>
               </Link>
             )}

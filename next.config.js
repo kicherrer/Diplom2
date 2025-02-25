@@ -15,6 +15,10 @@ const nextConfig = {
         'supports-color': false,
       };
     }
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'punycode': false,
+    };
     config.externals = [...(config.externals || []), 'bufferutil', 'utf-8-validate'];
     return config;
   },

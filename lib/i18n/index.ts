@@ -20,7 +20,10 @@ const resources = {
           signUp: "Sign Up",
           email: "Email",
           password: "Password",
-          createAccount: "Create Account"
+          createAccount: "Create Account",
+          loginSuccess: "Successfully logged in",
+          loginError: "Error logging in",
+          loggingIn: "Logging in...",
         },
         home: {
           title: "Your Personal Media Library",
@@ -95,7 +98,10 @@ const resources = {
           signUp: "Регистрация",
           email: "Email",
           password: "Пароль",
-          createAccount: "Создать аккаунт"
+          createAccount: "Создать аккаунт",
+          loginSuccess: "Успешный вход",
+          loginError: "Ошибка входа",
+          loggingIn: "Выполняется вход...",
         },
         home: {
           title: "Ваша Персональная Медиатека",
@@ -157,20 +163,11 @@ const resources = {
   }
 };
 
-let savedLanguage = 'ru';
-try {
-  if (typeof window !== 'undefined') {
-    savedLanguage = localStorage.getItem('i18nextLng') || 'ru';
-  }
-} catch (error) {
-  console.warn('Failed to access localStorage');
-}
-
 i18n
   .use(initReactI18next)
   .use(LanguageDetector)
   .init({
-    lng: savedLanguage,
+    lng: 'ru', // Set default language
     fallbackLng: 'en',
     detection: {
       order: ['localStorage', 'navigator'],
@@ -181,9 +178,12 @@ i18n
     resources
   });
 
-i18n.on('languageChanged', (lng) => {
-  document.documentElement.lang = lng;
-  localStorage.setItem('i18nextLng', lng);
-});
+// Move language change handling to client side only
+if (typeof window !== 'undefined') {
+  i18n.on('languageChanged', (lng) => {
+    document.documentElement.lang = lng;
+    localStorage.setItem('i18nextLng', lng);
+  });
+}
 
 export default i18n;
